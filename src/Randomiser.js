@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddUser from "./components/AddUser";
 import ShowUsers from "./components/ShowUsers";
+import Timer from "./components/Timer";
 
 class Randomiser extends Component {
   constructor(props, context) {
@@ -75,6 +76,9 @@ class Randomiser extends Component {
           {this.state.SpentUsers.length > 0 && (
             <button onClick={this.RackEmUp}>Rack 'em up</button>
           )}
+        </section>
+        <section>
+          <Timer />
         </section>
       </div>
     );
