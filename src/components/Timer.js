@@ -53,13 +53,8 @@ class Timer extends React.Component {
       );
     return (
       <div>
-        {this.state.time > 10000 && <aside>Overtime</aside>}
-        {this.state.time > 0 && (
-          <h3>
-            timer:
-            {ms(this.state.time)}
-          </h3>
-        )}
+        {this.state.time > 600000 && <h3>Overtime</h3>}
+        {this.state.time > 0 && <h3>{ms(this.state.time)}</h3>}
         {start}
         {resume}
         {stop}

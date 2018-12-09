@@ -1,11 +1,42 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 40px;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 100%;
+  height: 90%;
+}
+.a {
+  background-color: blue;
+}
+
+.b {
+  background-color: orangered;
+}
+
+.c {
+  background-color: green;
+}
+
+.d {
+  background-color: red;
+}
+
+.e {
+  background-color: black;
 }
 
 code {
@@ -14,7 +45,4 @@ code {
 }
 
 .chosenOne {
-  color: orangered;
-  background-color: blue;
-  padding: 20px;
 }

@@ -43,19 +43,19 @@ class Randomiser extends Component {
 
   render() {
     return (
-      <div>
-        <section>
+      <div className="wrapper">
+        <div className="box a">
           <h2>Add user</h2> <AddUser addUser={this.addUser} />
-        </section>
-        <section>
+        </div>
+        <div className="box b">
           <h2>Added Users</h2>
           {this.state.Users.map(user => (
             <section>
               <ShowUsers user={user.user} />
             </section>
           ))}
-        </section>
-        <section>
+        </div>
+        <div className="box c">
           <h2>The chosen one</h2>
           {this.state.Users.length > 0 && (
             <button onClick={this.ChooseOne}>Choose one</button>
@@ -65,8 +65,8 @@ class Randomiser extends Component {
               <ShowUsers user={this.state.ChosenOne} />
             </h3>
           )}
-        </section>
-        <section>
+        </div>
+        <div className="box d">
           <h2>Spent Users</h2>
           {this.state.SpentUsers.map(user => (
             <section>
@@ -76,10 +76,10 @@ class Randomiser extends Component {
           {this.state.SpentUsers.length > 0 && (
             <button onClick={this.RackEmUp}>Rack 'em up</button>
           )}
-        </section>
-        <section>
+        </div>
+        <div className="box e">
           <Timer />
-        </section>
+        </div>
       </div>
     );
   }
