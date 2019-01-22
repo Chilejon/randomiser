@@ -9,11 +9,19 @@ class Randomiser extends Component {
     this.state = {
       Users: [],
       SpentUsers: [],
-      ChosenOne: ""
+      ChosenOne: "",
+      teamSize: "1",
+      CurrentTeam: [{ user: "Simon" }, { user: "David" }]
     };
     this.addUser = this.addUser.bind(this);
     this.ChooseOne = this.ChooseOne.bind(this);
     this.RackEmUp = this.RackEmUp.bind(this);
+    this.teamSizechange = this.teamSizechange.bind(this);
+    this.addCurrentTeam = this.addCurrentTeam.bind(this);
+  }
+
+  teamSizechange(event) {
+    this.setState({ teamSize: event.target.value });
   }
 
   addUser(user) {
@@ -22,15 +30,45 @@ class Randomiser extends Component {
     this.setState({ Users: newArray });
   }
 
+  addCurrentTeam() {
+    //b = [...a, 4];
+    var newArray = this.state.Users.slice();
+    // this.state.CurrentTeam.forEach(element => {
+    //   newArray.push({ user: {element}});
+    // });
+    newArray = newArray.concat([
+      { user: "Simon" },
+      { user: "David" },
+      { user: "Stephen" },
+      { user: "JoshH" },
+      { user: "Lukasz" },
+      { user: "Priya" },
+      { user: "JoshA" },
+      { user: "Jordan" },
+      { user: "Lydia" },
+      { user: "Len" },
+      { user: "Anthony" },
+      { user: "Elliott" }
+    ]);
+    this.setState({ Users: newArray });
+  }
+
   ChooseOne() {
-    if (this.state.Users.length > 0) {
-      var randint = Math.floor(Math.random() * this.state.Users.length);
-      this.setState({ ChosenOne: this.state.Users[randint].user });
-      var chsnne = this.state.Users[randint].user;
-      this.state.Users.splice(randint, 1);
-      var newArray = this.state.SpentUsers.slice();
-      newArray.push({ user: chsnne });
-      this.setState({ SpentUsers: newArray });
+    if (this.state.Users.length > this.state.teamSize) {
+      var i;
+      var thisSetOfUsers;
+      var tempUserArray = [];
+      for (i = 0; i < this.state.teamSize; i++) {
+        var randint = Math.floor(Math.random() * this.state.Users.length);
+        alert(i + " " + randint);
+        thisSetOfUsers += this.state.Users[randint].user + "\r\n";
+        tempUserArray.push(this.state.Users[randint].user);
+        var newArray = this.state.SpentUsers.slice();
+        newArray.push({ user: this.state.Users[randint].user });
+        this.setState({ SpentUsers: newArray });
+        this.state.Users.splice(randint, 1);
+      }
+      this.setState({ ChosenOne: thisSetOfUsers });
     } else {
       alert("No names entered.");
     }
@@ -46,6 +84,7 @@ class Randomiser extends Component {
       <div className="wrapper">
         <div className="box a">
           <h2>Add user</h2> <AddUser addUser={this.addUser} />
+          <button onClick={this.addCurrentTeam}>Add current team</button>
         </div>
         <div className="box b">
           <h2>Added Users</h2>
@@ -58,7 +97,23 @@ class Randomiser extends Component {
         <div className="box c">
           <h2>The chosen one</h2>
           {this.state.Users.length > 0 && (
-            <button onClick={this.ChooseOne}>Choose one</button>
+            <div>
+              <select id="teamSize" onChange={this.teamSizechange}>
+                <option key="1" value="1">
+                  1
+                </option>
+                <option key="2" value="2">
+                  2
+                </option>
+                <option key="3" value="3">
+                  3
+                </option>
+                <option key="4" value="4">
+                  4
+                </option>
+              </select>
+              <button onClick={this.ChooseOne}>Choose one</button>
+            </div>
           )}
           {this.state.ChosenOne !== "" && (
             <h3 className="chosenOne">
