@@ -55,13 +55,12 @@ class Randomiser extends Component {
   }
 
   ChooseOne() {
-    if (this.state.Users.length > this.state.teamSize) {
+    if (this.state.Users.length >= this.state.teamSize) {
       var i;
       var thisSetOfUsers = "";
       var tempUserArray = [];
       for (i = 0; i < this.state.teamSize; i++) {
         var randint = Math.floor(Math.random() * this.state.Users.length);
-        //        alert(i + " " + this.state.Users[randint].user + " " + thisSetOfUsers);
         thisSetOfUsers += this.state.Users[randint].user + "\r\n";
 
         tempUserArray = tempUserArray.concat([
