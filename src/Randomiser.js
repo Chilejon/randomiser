@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AddUser from "./components/AddUser";
 import ShowUsers from "./components/ShowUsers";
 import Timer from "./components/Timer";
+import { isNullOrUndefined } from "util";
 
 class Randomiser extends Component {
   constructor(props, context) {
@@ -56,18 +57,25 @@ class Randomiser extends Component {
   ChooseOne() {
     if (this.state.Users.length > this.state.teamSize) {
       var i;
-      var thisSetOfUsers;
+      var thisSetOfUsers = "";
       var tempUserArray = [];
       for (i = 0; i < this.state.teamSize; i++) {
         var randint = Math.floor(Math.random() * this.state.Users.length);
-        alert(i + " " + randint);
+        //        alert(i + " " + this.state.Users[randint].user + " " + thisSetOfUsers);
         thisSetOfUsers += this.state.Users[randint].user + "\r\n";
-        tempUserArray.push(this.state.Users[randint].user);
-        var newArray = this.state.SpentUsers.slice();
-        newArray.push({ user: this.state.Users[randint].user });
-        this.setState({ SpentUsers: newArray });
+
+        tempUserArray = tempUserArray.concat([
+          { user: this.state.Users[randint].user }
+        ]);
+
         this.state.Users.splice(randint, 1);
       }
+      var newArray = this.state.SpentUsers.slice();
+      tempUserArray.forEach(element => {
+        newArray.push({ user: element.user });
+      });
+
+      this.setState({ SpentUsers: newArray });
       this.setState({ ChosenOne: thisSetOfUsers });
     } else {
       alert("No names entered.");
