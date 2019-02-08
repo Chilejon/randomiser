@@ -7,11 +7,15 @@ class ShowUsers extends Component {
     };
   }
 
-
   render() {
     return (
         <section>
-           {this.props.user}
+           {this.props.user} <button onClick={e => {
+            e.preventDefault();
+            this.props.delUser(this.props.user);
+          }}
+        >Del</button>
+        
         </section>
       )
   }

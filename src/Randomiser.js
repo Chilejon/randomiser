@@ -15,6 +15,7 @@ class Randomiser extends Component {
       CurrentTeam: [{ user: "Simon" }, { user: "David" }]
     };
     this.addUser = this.addUser.bind(this);
+    this.delUser = this.delUser.bind(this);
     this.ChooseOne = this.ChooseOne.bind(this);
     this.RackEmUp = this.RackEmUp.bind(this);
     this.teamSizechange = this.teamSizechange.bind(this);
@@ -29,6 +30,13 @@ class Randomiser extends Component {
     var newArray = this.state.Users.slice();
     newArray.push({ user: user });
     this.setState({ Users: newArray });
+  }
+
+  delUser(user) {
+    var currentArray = this.state.Users;
+    var pos = currentArray.map(function(e) { return e.user; }).indexOf(user);
+    this.state.Users.splice(pos, 1);
+    this.setState(this.state);
   }
 
   addCurrentTeam() {
@@ -97,7 +105,7 @@ class Randomiser extends Component {
           <h2>Added Users</h2>
           {this.state.Users.map(user => (
             <section>
-              <ShowUsers user={user.user} />
+              <ShowUsers user={user.user} delUser={this.delUser} />
             </section>
           ))}
         </div>
