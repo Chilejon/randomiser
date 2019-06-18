@@ -47,12 +47,10 @@ class Randomiser extends Component {
     // });
     newArray = newArray.concat([
       { user: "Simon" },
-      { user: "David" },
       { user: "Stephen" },
-      { user: "JoshH" },
       { user: "Lukasz" },
       { user: "Priya" },
-      { user: "JoshA" },
+      { user: "Josh" },
       { user: "Jordan" },
       { user: "Lydia" },
       { user: "Len" },
